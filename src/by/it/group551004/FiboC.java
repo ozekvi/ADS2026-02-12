@@ -1,8 +1,5 @@
 package by.it.group551004;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /*
  * Даны целые числа 1<=n<=1E18 и 2<=m<=1E5,
  * необходимо найти остаток от деления n-го числа Фибоначчи на m
@@ -25,6 +22,7 @@ public class FiboC {
     }
 
     long fasterC(long n, int m) {
+
         int period = findPisanoPeriod(m);
         long remainder = n % period;
         return fibonacciMod(remainder, m);
@@ -34,15 +32,16 @@ public class FiboC {
         int prev = 0;
         int curr = 1;
         int period = 0;
+        boolean found = false;
 
-        for (int i = 0; i < m * 6; i++) {
+        for (int i = 0; i < m * 6 && !found; i++) {
             int temp = curr;
             curr = (prev + curr) % m;
             prev = temp;
 
             if (prev == 0 && curr == 1) {
                 period = i + 1;
-                break;
+                found = true;
             }
         }
 
